@@ -1,6 +1,6 @@
 # Localhost Setup
 
-- I followed this [youtube tutorial]('https://youtu.be/FVumnHy5Tzo?si=GHsB3YZAU9zkXPsH')
+- I followed this [youtube tutorial](https://youtu.be/FVumnHy5Tzo?si=GHsB3YZAU9zkXPsH)
 - Create a directory called localhost in the same directory where chromedrivers were installed.
 - Open command prompt and run this command to create a Chrome instance at port 9222:
 
