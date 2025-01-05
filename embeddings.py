@@ -3,19 +3,21 @@ import chromadb, json
 
 model = SentenceTransformer("all-MiniLM-L6-v2")
 chroma_client = chromadb.PersistentClient(path='./chroma_data')
+file_name = input('Enter json file name: ')
 
-with open('bookmarked_tweets.json', 'r', encoding='utf-8') as f:
-    all_bookmarked_tweets = json.load(f)
+with open(file_name, 'r', encoding='utf-8') as f:
+    all_tweets = json.load(f)
 
 collection_name = 'tweets'
 try:
     collection = chroma_client.create_collection(name=collection_name)
-except chromadb.db.base.UniqueContraintError:
+except Exception as e:
     print(f'collection {collection_name} exists already. using it')
+    print(e)
     collection = chroma_client.get_collection(name=collection_name)
 
 cnt = 1
-for tweet in all_bookmarked_tweets:
+for tweet in all_tweets:
     embedding = model.encode(tweet['text']).tolist()
     metadata = {
         'username': tweet['username'],
